@@ -1,4 +1,4 @@
 import random
 import sys
 
-print(random.randrange(sys.argv[1]))
+print(random.randrange(int(sys.argv[1])))
