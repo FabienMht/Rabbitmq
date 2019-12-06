@@ -19,7 +19,9 @@ def create(address,file):
 def purge(address,file):
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=address))
     channel = connection.channel()
-    if channel.queue_declare(queue=file,passive=True):
+    try:
+        channel.queue_declare(queue=file,passive=True)
+    except Exception as e:
         channel.queue_purge(queue=file)
     connection.close()
     return True
