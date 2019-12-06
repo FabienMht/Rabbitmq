@@ -46,7 +46,7 @@ commit_msg="RT704"
 file_tache="ToDo"
 file_resultat="Done"
 flask_address="localhost"
-rabbitmq_address=sys.argv[1]
+rabbitmq_address=str(sys.argv[1])
 nb_taches=[]
 resultat=0
 
