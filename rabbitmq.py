@@ -7,7 +7,7 @@ except ModuleNotFoundError as error:
 
 # Variables
 app = Flask(__name__)
-rabbitmq_address=sys.argv[1]
+rabbitmq_address=str(sys.argv[1])
 
 def create(address,file):
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=address))
