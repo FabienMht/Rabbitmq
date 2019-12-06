@@ -53,7 +53,7 @@ def build_container(client,path,tag):
 # Variables
 client = docker.from_env()
 image_name = "rt704"
-repo_workdir = "./N_Dames"
+repo_workdir = str(sys.argv[2])+"/N_Dames"
 file_tache="ToDo"
 file_resultat="Done"
 flask_address=str(sys.argv[1])
