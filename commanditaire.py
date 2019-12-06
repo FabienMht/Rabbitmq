@@ -71,13 +71,16 @@ for list in file_tache,file_resultat:
     purge_file(flask_address,file)
     create_file(flask_address,file)
 
+sol=[-1]*chess_size
+
 # Génération des taches
 for i in range(chess_size):
+    sol[0]=i
     tache={}
     tache["ID_projet"] = 1
     tache["ID_tache"] = i
     tache["URL_git"] = git_url_repo
-    tache["CMD"] = "python3 /n_dame.py ["+str(i)+",-1,-1,-1,-1,-1,-1,-1]"
+    tache["CMD"] = "python3 /n_dame.py "+str(sol).replace(" ","")
     nb_taches.append(int(tache["ID_tache"]))
     send_msg(flask_address,tache,file_tache)
 

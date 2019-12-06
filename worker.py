@@ -15,7 +15,10 @@ def check_flask(address):
         exit(1)
 
 def get_tache(address,file):
-    r = requests.get("http://"+address+":5000/rabbit/getmsg/"+file)
+    try:
+        r = requests.get("http://"+address+":5000/rabbit/getmsg/"+file)
+    except Exception as e:
+        return "False"
     return r.text
 
 def send_msg(address,resultat,file):
@@ -77,6 +80,7 @@ try:
             send_msg(flask_address,resultat_json,file_resultat)
         else:
             print("Aucune tache !")
+            exit(0)
         time.sleep(1)
 except KeyboardInterrupt:
     print("Fin")
