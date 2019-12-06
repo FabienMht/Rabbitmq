@@ -21,8 +21,9 @@ def purge(address,file):
     channel = connection.channel()
     try:
         channel.queue_declare(queue=file,passive=True)
-    except Exception as e:
         channel.queue_purge(queue=file)
+    except Exception as e:
+        print("La file n'existe pas !")
     connection.close()
     return True
     
