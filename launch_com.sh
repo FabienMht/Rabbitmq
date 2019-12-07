@@ -16,6 +16,11 @@ usage () {
 
 }
 
+if [[ "$EUID" -ne 0 ]]; then 
+  echo "Lancer le script en tant que root"
+  exit 1
+fi
+
 # Variables
 START=0
 TAILLE_DAME=0
@@ -87,7 +92,7 @@ if [[ $INIT = 1 ]]; then
   cp "$basedir/commanditaire.py" $Folder_name/
   cp "$basedir/rabbitmq.py" $Folder_name/
 
-  rabbit_test=$(sudo docker images | grep "rabbitmq:management")
+  rabbit_test=$(docker images | grep "rabbitmq:management")
   if [[ ! rabbit_test ]]; then
     docker pull rabbitmq:management
   fi
@@ -106,8 +111,8 @@ if [[ $START = 1 ]]; then
     exit 1
   fi
 
-  container=$(sudo docker run -d rabbitmq:management)
-  container_address=$(sudo docker inspect $container | grep '"IPAddress"' | head -1 | cut -d '"' -f 4)
+  container=$(docker run -d rabbitmq:management)
+  container_address=$(docker inspect $container | grep '"IPAddress"' | head -1 | cut -d '"' -f 4)
 
   echo "Création du container rabbitmq : $container_address"
 
