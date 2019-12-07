@@ -16,6 +16,11 @@ usage () {
 
 }
 
+if [[ "$EUID" -ne 0 ]]; then 
+  echo "Lancer le script en tant que root"
+  exit 1
+fi
+
 # Variables
 START=0
 INIT=0
