@@ -8,10 +8,10 @@ usage () {
   echo "Prérequis pour le script : docker, python3, module venv pour python3 et git"
   echo ""
   echo "Options"
-  echo "  --start, -s    : Lance le code du worker"
-  echo "  --init, -i     : Initialise le code du worker"
-  echo "  --delete, -d   : Supprime le code du worker"
-  echo "  --help, -h     : Aide"
+  echo "  --start, -s ip_addres_flask    : Lance le code du worker"
+  echo "  --init, -i                     : Initialise le code du worker"
+  echo "  --delete, -d                   : Supprime le code du worker"
+  echo "  --help, -h                     : Aide"
   echo ""
 
 }
