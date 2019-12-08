@@ -8,7 +8,7 @@
 
 ## Commanditaire
 **Paquets :**
-- Docker pour rabbirmq
+- Docker pour rabbitmq
 - Python3 avec le module venv
 - Git
 
