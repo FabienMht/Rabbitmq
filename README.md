@@ -14,7 +14,7 @@
 
 # Execution
 **Etapes :**
-1. Cloner le dépot rabbitmq : git clone git@github.com:FabienMht/Rabbitmq.git .
+1. Cloner le dépot rabbitmq : git clone git@github.com:FabienMht/Rabbitmq.git
 2. Chnager les droits des script : chmod +x launch_*
 3. Initialiser le projet :
     1. Commanditaire : sudo ./launch_com.sh -i
