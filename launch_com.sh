@@ -93,8 +93,8 @@ if [[ $INIT = 1 ]]; then
   cp "$basedir/commanditaire.py" $Folder_name/
   cp "$basedir/rabbitmq.py" $Folder_name/
 
-  rabbit_test=$(docker images | grep "rabbitmq:management")
-  if [[ ! rabbit_test ]]; then
+  rabbit_test=$(docker images | awk '$1~/^rabbitmq$/ && $2~/^management$/ {print $0}')
+  if [[ ! $rabbit_test ]]; then
     docker pull rabbitmq:management
   fi
 
