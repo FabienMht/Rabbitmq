@@ -39,7 +39,7 @@ def on_msg(channel, method, properties, body):
     
 # Variables
 author = Actor("Fabien M", "mauhouratfabien@gmail.com")
-git_url_repo="git@github.com:FabienMht/N_Dames.git"
+git_url_repo="https://github.com/FabienMht/Rabbitmq.git"
 repo_workdir="./Project/Rabbitmq"
 project_files="./Project/Files"
 commit_msg="RT704"
