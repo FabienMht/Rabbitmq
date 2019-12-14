@@ -43,7 +43,7 @@ def build_container(client,path,tag):
 
 # Variables
 client = docker.from_env()
-image_name = "rt704"
+image_name = "n_dames"
 repo_workdir = "/N_Dames"
 file_tache="ToDo"
 file_resultat="Done"
