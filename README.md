@@ -1,20 +1,21 @@
-# Prérequis
+# Script
+## Prérequis
 
-## Worker
+### Worker
 **Paquets :**
 - Docker
 - Python3 avec le module venv
 - Git
 
-## Commanditaire
+### Commanditaire
 **Paquets :**
 - Docker pour rabbitmq
 - Python3 avec le module venv
 - Git
 
-# Execution
+## Execution
 **Etapes :**
-1. Cloner le dépot rabbitmq : git clone git@github.com:FabienMht/Rabbitmq.git
+1. Cloner le dépot rabbitmq : git clone https://github.com/FabienMht/Rabbitmq.git
 2. Chnager les droits des script : chmod +x launch_*
 3. Initialiser le projet :
     1. Commanditaire : sudo ./launch_com.sh -i
@@ -25,3 +26,20 @@
 5. Nettoyer le projet :
     1. Commanditaire : sudo ./launch_com.sh -d
     2. Worker : sudo ./launch_worker.sh -d
+
+# Docker compose
+## Prérequis
+
+**Paquets :**
+- Docker
+- Docker-compose
+- Git
+
+## Execution
+**Etapes :**
+1. Cloner le dépot rabbitmq : git https://github.com/FabienMht/Rabbitmq.git
+2. Lancer les services (par défaut taille de l'échiquier de 8) : 
+    1. sudo docker-compose up -d --build
+    2. sudo docker-compose up -d -e TAILLE=x --build
+3. Afficher les logs : sudo docker-compose logs
+4. Arrêter les services : sudo docker-compose down
