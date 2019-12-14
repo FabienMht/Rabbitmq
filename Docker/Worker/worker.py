@@ -62,7 +62,7 @@ done""")
 try:
     while True:
         tache = get_tache(flask_address,file_tache)
-        if tache!="False" or tache!="Erreur":
+        if tache!="False" and tache!="Erreur":
             print(tache)
             tache_json = json.loads(tache)
             repo=clone_repo(tache_json["URL_git"],repo_workdir)
