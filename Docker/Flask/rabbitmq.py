@@ -37,28 +37,16 @@ def write(address,msg,file):
 def read(address,file):
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=address))
     channel = connection.channel()
-    method_frame, header_frame, body = channel.basic_get(file)
-    if method_frame:
-        print(method_frame, header_frame, body)
-        channel.basic_ack(method_frame.delivery_tag)
-        return body
-    else:
-        return "False"
-
-os.system("""curl --silent rabbitmq:5672 > /dev/null
-while [[ "$?" = "7" ]]; do
-  sleep 1
-  curl --silent rabbitmq:5672 > /dev/null
-done""")
-
-# Test de connexion à la file Rabbitmq
-try:
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_address))
-    connection.close()
-except pika.exceptions.AMQPConnectionError:
-    print("Erreur : connexion impossible a la file RabbitMq "+rabbitmq_address)
-    exit(1)
-
+    try:
+        method_frame, header_frame, body = channel.basic_get(file)
+        if method_frame:
+            channel.basic_ack(method_frame.delivery_tag)
+            return body
+        else:
+            return "False"
+    except Exception as e:
+        return "Erreur"
+    
 # Définition des routes
 @app.route("/rabbit/create",methods=['POST'])
 def f1():
@@ -92,5 +80,21 @@ def f3():
         return "Purge creation de file"
 
 if __name__ == "__main__":
+    
+    # Test de connexion à la file Rabbitmq
+    os.system("""curl --silent rabbitmq:5672 > /dev/null
+    while [[ "$?" = "7" ]]; do
+      sleep 1
+      curl --silent rabbitmq:5672 > /dev/null
+    done""")
+
+    # Test de connexion à la file Rabbitmq
+    try:
+        connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_address))
+        connection.close()
+    except pika.exceptions.AMQPConnectionError:
+        print("Erreur : connexion impossible a la file RabbitMq "+rabbitmq_address)
+        exit(1)
+    
     app.run(host='0.0.0.0', port=5000,debug=True)
 
