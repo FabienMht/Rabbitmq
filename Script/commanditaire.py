@@ -1,6 +1,5 @@
 try:
-    import requests,json,os,pika,sys
-    from git import Repo,Actor
+    import requests,json,pika,sys
 except ModuleNotFoundError as error:
     print(error.__class__.__name__ + ": " + error.name)
     exit(1)
@@ -38,10 +37,7 @@ def on_msg(channel, method, properties, body):
         channel.stop_consuming()
     
 # Variables
-author = Actor("Fabien M", "mauhouratfabien@gmail.com")
 git_url_repo="https://github.com/FabienMht/N_dames.git"
-repo_workdir="./Project/Rabbitmq"
-project_files="./Project/Files"
 commit_msg="RT704"
 file_tache="ToDo"
 file_resultat="Done"

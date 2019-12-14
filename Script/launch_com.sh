@@ -88,7 +88,7 @@ if [[ $INIT = 1 ]]; then
 
   python3 -m venv $Folder_name
   source $Folder_name/bin/activate
-  pip3 install flask gitpython requests pika
+  pip3 install flask requests pika
 
   cp "$basedir/commanditaire.py" $Folder_name/
   cp "$basedir/rabbitmq.py" $Folder_name/
