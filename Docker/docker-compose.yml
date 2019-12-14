@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:management
+    logging:
+      driver: "none"
+
+  flask:
+    build: ./Flask
+    depends_on:
+      - rabbitmq
+
+  commanditaire:
+    build: ./Commanditaire
+    environment:
+      TAILLE: "8"
+    depends_on:
+      - rabbitmq
+      - flask
+    links:
+      - rabbitmq
+      - flask
+
+  worker:
+    build: ./Worker
+    depends_on:
+      - rabbitmq
+      - flask
+    links:
+      - rabbitmq
+      - flask
+      - commanditaire
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+

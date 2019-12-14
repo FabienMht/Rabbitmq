@@ -1,0 +1,9 @@
+FROM alpine:latest
+
+RUN apk update &&\
+apk add python3 py-pip git curl &&\
+pip3 install requests docker gitpython
+
+COPY worker.py /worker.py
+
+ENTRYPOINT ["/usr/bin/python3","/worker.py"]

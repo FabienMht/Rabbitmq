@@ -1,0 +1,9 @@
+FROM alpine:latest
+
+RUN apk update &&\
+apk add python3 py-pip curl &&\
+pip3 install flask pika
+
+COPY rabbitmq.py /rabbitmq.py
+
+ENTRYPOINT ["/usr/bin/python3","/rabbitmq.py"]

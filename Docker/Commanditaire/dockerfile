@@ -1,0 +1,9 @@
+FROM alpine:latest
+
+RUN apk update &&\
+apk add python3 py-pip curl &&\
+pip3 install requests pika
+
+COPY commanditaire.py /commanditaire.py
+
+ENTRYPOINT ["/usr/bin/python3","/commanditaire.py"]
