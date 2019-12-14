@@ -75,7 +75,7 @@ try:
             resultat_json["Resultat"] = resultat.decode().strip('\n')
             print(resultat_json)
             send_msg(flask_address,resultat_json,file_resultat)
-        else:
+        if tache=="False":
             print("Aucune tache !")
             exit(0)
         time.sleep(1)
