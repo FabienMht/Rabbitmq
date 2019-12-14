@@ -45,14 +45,6 @@ def read(address,file):
     else:
         return "False"
 
-# Test de connexion à la file Rabbitmq
-try:
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_address))
-    connection.close()
-except pika.exceptions.AMQPConnectionError:
-    print("Erreur : connexion impossible a la file RabbitMq "+rabbitmq_address)
-    exit(1)
-
 # Définition des routes
 @app.route("/rabbit/create",methods=['POST'])
 def f1():
@@ -86,5 +78,14 @@ def f3():
         return "Purge creation de file"
 
 if __name__ == "__main__":
+    
+    # Test de connexion à la file Rabbitmq
+    try:
+        connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_address))
+        connection.close()
+    except pika.exceptions.AMQPConnectionError:
+        print("Erreur : connexion impossible a la file RabbitMq "+rabbitmq_address)
+        exit(1)
+    
     app.run(host='0.0.0.0', port=5000,debug=True)
 

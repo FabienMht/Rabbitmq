@@ -1,6 +1,6 @@
 try:
     import requests,json,docker,time,sys,os
-    from git import Repo,Actor
+    from git import Repo
 except ModuleNotFoundError as error:
     print(error.__class__.__name__ + ": " + error.name)
     exit(1)
@@ -49,14 +49,12 @@ file_tache="ToDo"
 file_resultat="Done"
 flask_address="flask"
 
-# Check flask connexion
+# Tant que le serveur flask n'est pas joignable le reste du code n'est pas éxécuté
 os.system("""curl --silent flask:5000 > /dev/null
 while [[ "$?" = "7" ]]; do
   sleep 1
   curl --silent flask:5000 > /dev/null
 done""")
-
-#time.sleep(5)
 
 # Code
 try:

@@ -4,10 +4,6 @@ except ModuleNotFoundError as error:
     print(error.__class__.__name__ + ": " + error.name)
     exit(1)
 
-def help():
-    print("Utilisation : python3 commanditaire.py x (ou x est la taille de l echiquier)")
-    exit(1)
-
 def create_file(address,file):
     param = {"data" : json.dumps(file)}
     r = requests.post("http://"+address+":5000/rabbit/create",data=param)
@@ -41,17 +37,19 @@ git_url_repo="https://github.com/FabienMht/N_dames.git"
 commit_msg="RT704"
 file_tache="ToDo"
 file_resultat="Done"
-flask_address="flask"
-rabbitmq_address="rabbitmq"
+flask_address="flask" # Nom DNS du container Flask grâce au lien entre les containeurs docker
+rabbitmq_address="rabbitmq" # Nom DNS du container Rabbitmq grâce au lien entre les containeurs docker
 nb_taches=[]
 resultat=0
 
+# Tant que le serveur rabbitmq n'est pas joignable le reste du code n'est pas éxécuté
 os.system("""curl --silent rabbitmq:5672 > /dev/null
 while [[ "$?" = "7" ]]; do
   sleep 1
   curl --silent rabbitmq:5672 > /dev/null
 done""")
 
+# Tant que le serveur flask n'est pas joignable le reste du code n'est pas éxécuté
 os.system("""curl --silent flask:5000 > /dev/null
 while [[ "$?" = "7" ]]; do
   sleep 1
