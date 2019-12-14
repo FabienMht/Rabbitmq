@@ -15,7 +15,7 @@ services:
   commanditaire:
     build: ./Commanditaire
     environment:
-      TAILLE: "8"
+      TAILLE: "${TAILLE}"
     depends_on:
       - rabbitmq
       - flask
