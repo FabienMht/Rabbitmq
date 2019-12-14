@@ -38,8 +38,8 @@
 ## Execution
 **Etapes :**
 1. Cloner le dépot rabbitmq : git https://github.com/FabienMht/Rabbitmq.git
-2. Lancer les services (par défaut taille de l'échiquier de 8) : 
-    1. sudo docker-compose up -d --build
-    2. sudo docker-compose up -d -e TAILLE=x --build
-3. Afficher les logs : sudo docker-compose logs
-4. Arrêter les services : sudo docker-compose down
+2. Lancer les services en root : 
+    1. Première initialisation : export TAILLE=X && docker-compose up --build
+    2. Sinon : docker-compose up
+3. Afficher les logs : docker-compose logs
+4. Arrêter les services : docker-compose down
